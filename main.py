@@ -4,12 +4,12 @@
 # Предусмотреть смену с serial интерфейса на TCP.
 #!/usr/bin/python3
 '''
-Для получения данных по serial используется макет. Код макета добавил в проект.
-Я полагаю, что в реальном проекте отправка данных может осуществляться осущетсвляться с контролем целостности,
-но в данной задачи этого не требовалось
+Для получения данных и отладки по serial используется макет с мк. Код макета добавил в проект.
+Так же полагаю, что в реальном проекте отправка данных будет осущетсвляться с контролем целостности,
+и потребуются дополнительные настройки serial port
 '''
 import serial, socket
-DATA = {"A": "A_10V", "B": "B_5V", "C": "A_15V" }
+DATA = {"A": "A_10V", "B": "B_5V", "C": "A_15V" } #
 serial_port = None
 cmd_stop = True #команда для управления циклом while для остановки цикла нужно отправить 'stop'
 method = 'com' #выбор интерфеса приема данных  com | tcp.
@@ -18,6 +18,9 @@ def get_source():
         global serial_port
         serial_port = serial.Serial(port='/dev/ttyUSB0', baudrate=115200)
     if method == 'tcp':
+        # with socket.socket() as sock:
+        #     sock = socket.socket()
+        #     sock.connect_ex(("localhost",3000))
         pass #тут по аналогии с com-порто будет проводиться инициализация tcp
 
 get_source()
@@ -35,8 +38,6 @@ def read_serial_data(cmd): #чтение данных по serial
         # Если бы была такая возможность данную обработку я бы перенес на сторону устройства
 
 def read_tcp_data(cmd): #чтение данных по tcp
-    # with socket.socket() as sock:
-    #     sock = socket.socket()
     #     if sock.connect_ex(("localhost",3000))== 0:
     #         sock.send(cmd.encode())
     #         data = sock.recv()
