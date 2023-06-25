@@ -53,8 +53,8 @@ def parse_data(data): # Обработка данных. Например: на 
           print("Input error")
 def mock(command):#иммитация отправки сообщения с сервера. Отправляем команду типа GET_A ищем значение в словаре по ключу
     if (command.lower() == 'stop'):
-        global test_cmd
-        test_cmd = False
+        global cmd_stop
+        cmd_stop = False
     if command.upper().startswith('GET_') == True:
         cmd = command.split("_")
         symb = DATA[cmd[1]].split("_")
