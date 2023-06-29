@@ -18,7 +18,7 @@ def get_source():
         global serial_port
         serial_port = serial.Serial(port='/dev/ttyUSB0', baudrate=115200)
     if method == 'tcp':
-        # checkount -b fix_error
+        # checkount
         # with socket.socket() as sock:
         #     sock = socket.socket()
         #     sock.connect_ex(("localhost",3000))
